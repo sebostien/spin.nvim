@@ -11,7 +11,6 @@ A plugin for interacting with the verification tool [spin].
     - [Commands](#commands)
 <!--toc:end-->
 
-
 ## Features
 
 - Validates [promela] syntax and sends reports using the diagnostics framework.
@@ -63,9 +62,7 @@ The default settings are listed below:
   generate_command = "spin -a",     -- Command to generate verifier
   gcc_command = "gcc -o pan pan.c", -- Command to compile verifier
   on_attach = function(client, bufnr)
-    -- Executed once when opening the first promela file of a session
     -- Set keybindings, etc. here
-
     -- bind `K` to hover
     -- vim.keymap.set("n", "K", vim.lsp.buf.hover)
   end,
@@ -76,10 +73,10 @@ The default settings are listed below:
 
 ### Commands
 
-- `:SpinCheck`    Check syntax in the current buffer
-- `:SpinGenerate` Generate verifier for current buffer
+- `:SpinCheck`    Check syntax in the current buffer.
+- `:SpinGenerate` Generate verifier for current buffer.
 - `:SpinVerify`   Generate and run verifier for current buffer.
-                  Opens output in new a buffer (exit with `q` or `<Esc>`).
+                  Opens output in a new buffer (exit with `q` or `<Esc>`).
 
 
 [promela]: https://en.wikipedia.org/wiki/Promela
