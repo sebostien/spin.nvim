@@ -16,13 +16,6 @@ Table of Contents                                *spin.nvim-table-of-contents*
 A plugin for interacting with the verification tool spin
 <https://spinroot.com/spin/whatispin.html>.
 
-- |spin.nvim-features|
-- |spin.nvim-requirements|
-- |spin.nvim-installation|
-- |spin.nvim-configuration|
-- |spin.nvim-usage|
-    - |spin.nvim-commands|
-
 
 FEATURES                                        *spin.nvim-spin.nvim-features*
 
@@ -34,6 +27,7 @@ FEATURES                                        *spin.nvim-spin.nvim-features*
 REQUIREMENTS                                *spin.nvim-spin.nvim-requirements*
 
 - The spin <https://spinroot.com/spin/whatispin.html> tool itself
+- gcc (optional)
 
 Run `:checkhealth spin` to ensure that the plugin is working correctly.
 
