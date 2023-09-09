@@ -2,15 +2,6 @@
 
 A plugin for interacting with the verification tool [spin].
 
-<!--toc:start-->
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-    - [Commands](#commands)
-<!--toc:end-->
-
 ## Features
 
 - Validates [promela] syntax and sends reports using the diagnostics framework.
@@ -20,6 +11,7 @@ A plugin for interacting with the verification tool [spin].
 ## Requirements
 
 - The [spin] tool itself
+- gcc (optional)
 
 Run `:checkhealth spin` to ensure that the plugin is working correctly.
 
