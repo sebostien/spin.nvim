@@ -20,7 +20,11 @@ local defaults = {
   ---Command to generate verifier
   ---@type string|nil
   generate_command = "spin -a",
+  ---Command to follow simulation trail
+  ---@type string|nil
+  trail_command = "spin -t -p -l",
   ---Command to compile verifier
+  ---Output must be `pan`
   ---@type string|nil
   gcc_command = "gcc -o pan pan.c",
   ---Executed once when spin is started for the first time.

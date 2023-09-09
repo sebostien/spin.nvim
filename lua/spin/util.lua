@@ -76,6 +76,49 @@ M.parse_spin_definition = function(line)
   return nil, nil
 end
 
+---Run a job and send stdout to temporary buffer
+---@param cmd string Job to run
+---@return integer exit_code
+M.run_job = function(cmd)
+  local prev_buf = vim.fn.bufnr()
+
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_set_current_buf(buf)
+
+  local errors = {}
+
+  local job = vim.fn.jobstart(cmd, {
+    pty = false,
+    stdout_buffered = false,
+    on_stdout = function(_, lines)
+      vim.api.nvim_buf_set_lines(buf, -1, -1, true, lines)
+    end,
+    on_stderr = function(_, lines)
+      for _, line in ipairs(lines) do
+        if #line > 0 then
+          table.insert(errors, line)
+        end
+      end
+    end
+  })
+  vim.fn.chanclose(job, "stdin")
+
+  local function close_temp_buf()
+    vim.fn.jobstop(job)
+    vim.api.nvim_set_current_buf(prev_buf)
+    vim.api.nvim_buf_delete(buf, { unload = true })
+  end
+
+  vim.keymap.set("n", "<Esc>", close_temp_buf, { buffer = buf, noremap = true })
+  vim.keymap.set("n", "q", close_temp_buf, { buffer = buf, noremap = true })
+
+  local success = vim.fn.jobwait({ job })[1]
+  if success ~= 0 then
+    vim.notify(vim.fn.join(errors, "\n"), vim.log.levels.ERROR)
+  end
+  return success
+end
+
 M.check_on_save = function()
   if config.options.check_on_save then
     require("spin").check()

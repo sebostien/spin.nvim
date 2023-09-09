@@ -9,3 +9,4 @@ augroup end
 command! SpinCheck    lua require("spin").check()
 command! SpinGenerate lua require("spin").generate()
 command! SpinVerify   lua require("spin").verify()
+command! SpinTrail    lua require("spin").trail()
